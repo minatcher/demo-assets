@@ -3,8 +3,8 @@ Setup
 --------------------*/
 console.clear();
 const canvas = document.querySelector('#bubble');
-let width = canvas.width = Math.min(window.innerWidth, window.innerHeight),
-height = canvas.height = Math.min(window.innerWidth, window.innerHeight);
+let width = canvas.width = Math.max(Math.min(window.innerWidth, window.innerHeight), 800);
+let height = canvas.height = width;
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
   antialias: true,
@@ -68,7 +68,7 @@ let bubble;
 let bubble2;
 const createBubble = () => {
 
-  const texture = new THREE.TextureLoader().load('typo2.png');
+  const texture = new THREE.TextureLoader().load('https://minatcher.github.io/demo-assets/typo2.png');
   texture.offset.set(0.25, 0);
 
   const bubbleMaterial2 = new THREE.MeshPhysicalMaterial({
@@ -154,8 +154,8 @@ canvas.addEventListener('touchend', (e) => {
 Resize
 --------------------*/
 const onResize = () => {
-  width = Math.min(window.innerWidth, window.innerHeight);
-  height = Math.min(window.innerWidth, window.innerHeight);
+  width = height = Math.max(Math.min(window.innerWidth, window.innerHeight), 800);
+  // height = Math.min(window.innerWidth, window.innerHeight);
   camera.aspect = width / height;
   camera.position.z = width > 575 ? 180 : 100;
   camera.updateProjectionMatrix();
